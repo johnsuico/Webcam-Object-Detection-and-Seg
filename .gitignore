@@ -209,3 +209,4 @@ __marimo__/
 # Ultralytics
 runs
 yolo*
+mobileclip2_b.ts
