@@ -10,11 +10,11 @@ from ultralytics import YOLO
 # Using the larger model for better accuracy, but it may be slower
 # Using yoloe to use prompt detection
 model = YOLO("yoloe-26l-seg.pt")
-model.set_classes(["person"])
+model.set_classes(["cup"])
 
 # Use model to predict and segment objects on an image
 # Set save to false so we can control where we save the resulting picture and what we name it
-results = model.predict(source="sample_pictures\street.jpg", save=False)
+results = model.predict(source="sample_pictures\cup.jpg", save=False)
 
 # results[0].plot() draws the bounding boxes, masks, and labels on the image
 # It returns a NumPy array (BGR format, standard for OpenCV)
@@ -41,6 +41,6 @@ if results[0].boxes is not None:
 ### Custom saving route
 # ================================
 # Save it exactly where you want with exactly what name you want
-custom_save_path = "results.jpg"
+custom_save_path = "bound_box_center.jpg"
 cv2.imwrite(custom_save_path, annotated_image)
 # ================================
