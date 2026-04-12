@@ -72,6 +72,7 @@ while cap.isOpened():
 
         # ==================================================
         # CALCULATE AND DISPLAY DISTANCE
+        # NOT WORKING ACCURATELY
         # ==================================================
         boxes_xyxy = results[0].boxes.xyxy.cpu().numpy().astype(int)  # Get bounding boxes in xyxy format
 
