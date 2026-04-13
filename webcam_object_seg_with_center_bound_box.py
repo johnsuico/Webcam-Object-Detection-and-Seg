@@ -1,4 +1,4 @@
-import cv2
+import cv2, platform
 from ultralytics import YOLO
 
 # Load desired model
@@ -10,14 +10,12 @@ model = YOLO("yoloe-26l-seg.pt")
 model.set_classes(["person", "mouse", "keyboard", "guitar", "phone"])
 # ================================
 
-# Use yolo26n-seg for faster inference, but it may be less accurate and will detect all classes
-# Uncomment line below to use yolo26n-seg
-# ================================
-# model = YOLO("yolo26n-seg.pt")
-# ================================
-
 # Initalize the webcam
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+# Check between Windows vs Linux
+if platform.system() == "Windows":
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+elif platform.system() == "Linux":
+    cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
 
 # Check if the webcam is opened correctly
 if not cap.isOpened():
