@@ -34,7 +34,25 @@ while cap.isOpened():
         break
 
     # Perform object detection and segmentation
-    results = model(frame)
+    results = model(frame, verbose=False)
+
+    # Extract object output
+    detected_objects = set()
+
+    # Check if object is in frame
+    if results and len(results[0].boxes) > 0:
+        # Get the ID numbers
+        class_ids = results[0].boxes.cls.cpu().numpy()
+
+        # Convert IDs to string names using mode.names and add it to detected_objects set
+        for class_id in class_ids:
+            detected_objects.add(model.names[int(class_id)])
+    
+    # Print the detected objects in the console
+    if len(detected_objects) > 0:
+        print(detected_objects)
+    if len(detected_objects) == 0:
+        print("No objects detected.")
 
     # Display the results on the frame
     annotated_frame = results[0].plot()
