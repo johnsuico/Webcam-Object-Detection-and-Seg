@@ -210,3 +210,6 @@ __marimo__/
 runs
 yolo*
 mobileclip2_b.ts
+
+# QWEN
+Qwen3.5-9B-UD-Q4_K_XL.gguf
